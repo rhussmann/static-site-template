@@ -1,0 +1,17 @@
+Parameters:
+  FullDomainName:
+    Type: String
+    Description: The full domain name
+
+Resources:
+  DNS:
+    Type: "AWS::Route53::HostedZone"
+    Properties:
+      HostedZoneConfig:
+        Comment: !Join ["", ['Hosted zone for ', !Ref FullDomainName]]
+      Name: !Ref FullDomainName
+
+Outputs:
+  CampCedarStreetHostedZoneID:
+    Description: Zone ID for campcedarstreet.com
+    Value: !Ref 'DNS'
